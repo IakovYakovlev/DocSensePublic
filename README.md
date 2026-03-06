@@ -12,6 +12,7 @@
 ## 🎯 Project Highlights
 
 **Architecture & Design Patterns:**
+
 - ✅ **Strategy Pattern** — AI provider abstraction (Gemini/OpenAI/Claude)
 - ✅ **Factory Pattern** — Dynamic service instantiation
 - ✅ **Repository Pattern** — Clean data access layer
@@ -19,6 +20,7 @@
 - ✅ **SOLID Principles** — Modular, testable, maintainable code
 
 **Backend Engineering:**
+
 - 🚀 **Background Job Processing** — Async task queue with retry logic
 - 📊 **Database Versioning** — EF Core migrations with auto-apply on startup
 - 🔒 **API Key Authentication** — Custom middleware implementation
@@ -26,6 +28,7 @@
 - 🐳 **Docker Compose** — Multi-container orchestration (API + PostgreSQL)
 
 **Code Quality:**
+
 - 🧪 **Unit Testing** — Moq, xUnit, in-memory SQLite
 - 📦 **Clean Architecture** — Separated concerns (Controllers → Services → Repositories)
 - 🔍 **Error Handling** — Custom exception filters & structured responses
@@ -52,16 +55,19 @@
 ## ⚡ Features
 
 **Document Processing:**
+
 - 📄 Multi-format support: **PDF, DOCX, TXT**
 - 📝 Text extraction via **PdfPig** (PDF), **OpenXML** (DOCX)
 - ✂️ Smart text chunking for large documents (10M+ characters)
 
 **AI Analysis:**
+
 - 🤖 **4-in-1 Analysis**: Summary, Keywords, Sentiment, Main Topics
 - 🔌 **Multi-provider support**: Gemini, OpenAI, Claude (pluggable architecture)
 - ⚡ **Async processing**: Background jobs for long-running tasks
 
 **Backend Features:**
+
 - 🔐 **API Key Authentication** (middleware-based)
 - 📊 **Usage Tracking** (quotas, limits per user plan)
 - 💾 **PostgreSQL** for persistent storage
@@ -71,16 +77,16 @@
 
 ## 🧰 Tech Stack
 
-| Layer               | Technology                          |
-| ------------------- | ----------------------------------- |
-| **Language**        | C# 14.0                             |
-| **Framework**       | ASP.NET Core 10                     |
-| **Database**        | PostgreSQL 17 / SQLite (tests)      |
-| **ORM**             | Entity Framework Core 10            |
-| **AI Integration**  | Gemini API, OpenAI, Claude (custom) |
-| **Testing**         | xUnit, Moq, FluentAssertions        |
-| **Documentation**   | Swagger / OpenAPI 3.0               |
-| **Containerization**| Docker, Docker Compose              |
+| Layer                | Technology                          |
+| -------------------- | ----------------------------------- |
+| **Language**         | C# 14.0                             |
+| **Framework**        | ASP.NET Core 10                     |
+| **Database**         | PostgreSQL 17 / SQLite (tests)      |
+| **ORM**              | Entity Framework Core 10            |
+| **AI Integration**   | Gemini API, OpenAI, Claude (custom) |
+| **Testing**          | xUnit, Moq, FluentAssertions        |
+| **Documentation**    | Swagger / OpenAPI 3.0               |
+| **Containerization** | Docker, Docker Compose              |
 
 ---
 
@@ -106,6 +112,7 @@ Key Components:
 ```
 
 **Design Patterns Used:**
+
 - **Strategy** — Different AI providers, file readers, plan types
 - **Factory** — Dynamic instantiation based on runtime config
 - **Repository** — Data access abstraction
@@ -137,6 +144,7 @@ docker-compose up -d --build
 ```
 
 **Check logs:**
+
 ```bash
 docker logs -f docsense-api
 ```
@@ -146,11 +154,13 @@ docker logs -f docsense-api
 ### 💻 Local Development
 
 **Prerequisites:**
+
 - .NET 10 SDK
 - PostgreSQL 17
 - API key for Gemini/OpenAI/Claude
 
 **Steps:**
+
 ```bash
 # 1) Restore dependencies
 dotnet restore
@@ -199,6 +209,7 @@ DocSenseV1Test/
 ## 🔌 API Endpoints
 
 **Upload Document:**
+
 ```http
 POST /api/upload
 Headers:
@@ -209,16 +220,10 @@ Body:
   planType: free|pro|ultra
 ```
 
-**Check Job Status:**
+**Check Job Result:**
+
 ```http
 GET /api/job/{jobId}
-Headers:
-  X-RapidAPI-Proxy-Secret: {your-api-key}
-```
-
-**Get Job Result:**
-```http
-GET /api/job/{jobId}/result
 Headers:
   X-RapidAPI-Proxy-Secret: {your-api-key}
 ```
@@ -230,11 +235,13 @@ Headers:
 ## 🧪 Testing
 
 **Run all tests:**
+
 ```bash
 dotnet test
 ```
 
 **Run specific test category:**
+
 ```bash
 # Unit tests only
 dotnet test --filter Category=Unit
@@ -244,6 +251,7 @@ dotnet test --filter Category=Integration
 ```
 
 **Test coverage:**
+
 - ✅ Repository layer (in-memory SQLite)
 - ✅ Service layer (mocked dependencies)
 - ✅ Strategy implementations
@@ -255,6 +263,7 @@ dotnet test --filter Category=Integration
 ## ⚙️ Configuration
 
 **Environment Variables (`.env`):**
+
 ```env
 # Application
 ASPNETCORE_ENVIRONMENT=Development
@@ -273,6 +282,7 @@ Authentication__ApiKey=your_secret_api_key
 ```
 
 **Supported AI Providers:**
+
 - Gemini (Google)
 - OpenAI (GPT-4)
 - Claude (Anthropic)
@@ -282,21 +292,25 @@ Authentication__ApiKey=your_secret_api_key
 ## 📊 Technical Decisions
 
 **Why Strategy Pattern?**
+
 - Easy to add new AI providers without modifying existing code
 - Each strategy encapsulates provider-specific logic
 - Testable in isolation
 
 **Why Background Jobs?**
+
 - Large files (10M characters) take 30+ seconds to process
 - Avoid HTTP timeouts
 - Better UX (async status polling)
 
 **Why PostgreSQL?**
+
 - Production-ready RDBMS
 - JSON support (for storing analysis results)
 - EF Core migrations work seamlessly
 
 **Why API Keys instead of JWT?**
+
 - Simpler for API consumers
 - No token refresh complexity
 - Suitable for server-to-server communication
