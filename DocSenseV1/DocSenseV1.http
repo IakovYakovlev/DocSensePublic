@@ -1,0 +1,6 @@
+@DocSenseV1_HostAddress = http://localhost:5285
+
+GET {{DocSenseV1_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
